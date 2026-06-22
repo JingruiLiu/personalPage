@@ -33,24 +33,24 @@
 window.PROFILE = {
 
   // Your name, shown large under your photo.
-  name: "Sample Person",
+  name: "Jingrui(Rui) Liu",
 
   // One short line under your name (a role, field, or anything you like).
-  tagline: "Your one-line tagline",
+  tagline: "Embedded System Developer | PhD Candidate in BME",
 
   // Your photo. Put a square image at  assets/avatar.jpg  in this same folder.
   // (Leave this line as-is; just replace the image file. If there is no photo,
   //  a neutral placeholder is shown automatically.)
-  avatar: "assets/avatar.jpg",
+  avatar: "assets/itsfine.jpg",
 
   // ---- Your contacts, in the order you want them shown. ----
   links: [
-    { type: "email",    value: "you@example.com" },
+    { type: "email",    value: "jingruil@umich.edu" },
     { type: "website",  value: "" },                                      // hidden until filled in
-    { type: "linkedin", value: "https://www.linkedin.com/in/your-handle/" },
-    { type: "github",   value: "https://github.com/your-handle" },
+    { type: "linkedin", value: "https://www.linkedin.com/in/jingrui-liu-97206b295/" },
+    { type: "github",   value: "" },
     { type: "scholar",  value: "" },                                      // hidden until filled in
-    // { type: "link", label: "My Lab", value: "https://lab.example.com" },  // example of a custom link
+    { type: "link", label: "My Lab", value: "https://potkay.lab.medicine.umich.edu/" },  // example of a custom link
   ],
 
 };
