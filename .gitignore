@@ -1,0 +1,15 @@
+# Private maintainer files — NEVER commit / deploy these.
+
+# The name -> slug map that ties real people to their (otherwise anonymous) URLs.
+slug-map.local.txt
+
+# Local backup of the original single-file card. Kept off the deployed site so no
+# real name/photo is reachable outside the /p/<random-slug>/ scheme.
+original-card.local.html
+
+# Local tooling (preview server config, etc.) — not part of the site.
+.claude/
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db

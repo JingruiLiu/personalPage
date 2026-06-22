@@ -1,0 +1,194 @@
+/* =============================================================================
+   SHARED CARD STYLES — single source of truth for the look of every page.
+   Maintained by the site owner. Editing this file restyles EVERYONE at once.
+   Colleagues never touch this file.
+
+   Design language: iOS-style contact card — system font stack, off-white page,
+   white card, single blue accent, iOS "Settings" grouped rows, 44px tap targets,
+   automatic dark mode (follows the OS), responsive, no decorative animation.
+   ============================================================================= */
+
+/* ---- Design tokens. Change these to adjust the whole look in one place. ---- */
+:root {
+  --bg:             #F5F5F7;   /* page background (Apple's signature off-white) */
+  --surface:        #FFFFFF;  /* the card itself */
+  --text:           #1D1D1F;  /* primary text */
+  --text-secondary: #6E6E73;  /* tagline, secondary labels */
+  --accent:         #0071E3;  /* Apple's current link/button blue */
+  --divider:        rgba(0, 0, 0, 0.08);
+  --avatar-bg:      #E8E8ED;
+  --avatar-icon:    #AEAEB2;
+  --shadow:         0 24px 60px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
+  --radius-card:    22px;
+  --radius-row:     14px;
+}
+
+/* Automatically follow the visitor's system theme — no toggle/JS needed */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:             #000000;
+    --surface:        #1C1C1E;
+    --text:           #F5F5F7;
+    --text-secondary: #98989D;
+    --accent:         #409CFF;
+    --divider:        rgba(255, 255, 255, 0.12);
+    --avatar-bg:      #2C2C2E;
+    --avatar-icon:    #6E6E73;
+    --shadow:         none; /* shadows don't read well on black; a hairline border stands in */
+  }
+}
+
+/* ---- Reset / base ---- */
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: var(--bg);
+  /* The system font stack: San Francisco on Apple, Segoe UI on Windows,
+     Roboto on Android — the honest cross-platform "Apple-like" type feel. */
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI",
+               Roboto, Helvetica, Arial, sans-serif;
+  color: var(--text);
+}
+
+::selection { background: var(--accent); color: #fff; }
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ---- The card ---- */
+.card {
+  width: 100%;
+  max-width: 400px;
+  background: var(--surface);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--divider); /* visible mainly in dark mode; subtle in light too */
+  overflow: hidden;
+}
+
+/* ---- Header: avatar, name, tagline ---- */
+.header {
+  text-align: center;
+  padding: 40px 28px 28px;
+}
+
+.avatar {
+  width: 96px;
+  height: 96px;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--avatar-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.name {
+  font-size: 1.5rem;       /* 24px */
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.tagline {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  margin: 6px 0 0;
+}
+
+/* ---- Contact list: iOS "Settings app" grouped-row style ---- */
+.contact-list {
+  border-top: 1px solid var(--divider);
+}
+
+.contact-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 13px 24px;
+  min-height: 44px;           /* Apple's HIG minimum tap target */
+  text-decoration: none;
+  color: var(--text);
+  border-bottom: 1px solid var(--divider);
+  /* A subtle, near-instant feedback on tap/hover — functional, not decorative. */
+  transition: background-color 0.12s ease;
+}
+.contact-row:last-child { border-bottom: none; }
+.contact-row:hover,
+.contact-row:active { background-color: var(--bg); }
+
+.contact-row__icon {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.contact-row__icon svg { width: 100%; height: 100%; }
+
+.contact-row__label {
+  flex: 1;
+  font-size: 1rem;
+  font-weight: 400;
+  min-width: 0;               /* allow long sub-labels to truncate, not overflow */
+}
+.contact-row__sub {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  display: block;
+  margin-top: 1px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.contact-row__chevron {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  color: var(--text-secondary);
+  opacity: 0.6;
+}
+
+/* ---- Friendly fallback message (shown if a profile fails to load) ---- */
+.card-message {
+  padding: 40px 28px;
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+.card-message a { color: var(--accent); }
+
+/* ---- Neutral root placeholder page ---- */
+.blank-note {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+/* ---- Mobile ---- */
+@media (max-width: 380px) {
+  .header { padding: 32px 20px 24px; }
+  .contact-row { padding: 13px 18px; }
+}
+
+/* Respect reduced-motion preference even for the minimal hover feedback */
+@media (prefers-reduced-motion: reduce) {
+  .contact-row { transition: none; }
+}
