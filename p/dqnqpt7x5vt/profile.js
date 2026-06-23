@@ -36,7 +36,7 @@ window.PROFILE = {
   name: "Jingrui(Rui) Liu",
 
   // One short line under your name (a role, field, or anything you like).
-  tagline: "Embedded System Developer | PhD Candidate in BME",
+  tagline: "This is fine.",
 
   // Your photo. Put a square image at  assets/avatar.jpg  in this same folder.
   // (Leave this line as-is; just replace the image file. If there is no photo,
